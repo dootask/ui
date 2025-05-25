@@ -73,13 +73,11 @@ export const Sizes: Story = {
 export const WithIcons: Story = {
   render: () => (
     <div className="flex gap-4 flex-wrap">
-      <Button leftIcon={<UserIcon className="w-4 h-4" />}>
-        左图标
-      </Button>
+      <Button leftIcon={<UserIcon className="w-4 h-4" />}>左图标</Button>
       <Button rightIcon={<MagnifyingGlassIcon className="w-4 h-4" />}>
         右图标
       </Button>
-      <Button 
+      <Button
         leftIcon={<UserIcon className="w-4 h-4" />}
         rightIcon={<MagnifyingGlassIcon className="w-4 h-4" />}
       >
@@ -105,4 +103,4 @@ export const FullWidth: Story = {
       <Button fullWidth>全宽按钮</Button>
     </div>
   ),
-} 
+}

@@ -22,7 +22,14 @@ const meta = {
     },
     position: {
       control: 'select',
-      options: ['top-left', 'top-center', 'top-right', 'bottom-left', 'bottom-center', 'bottom-right'],
+      options: [
+        'top-left',
+        'top-center',
+        'top-right',
+        'bottom-left',
+        'bottom-center',
+        'bottom-right',
+      ],
       description: '显示位置',
     },
     duration: {
@@ -160,7 +167,11 @@ export const CustomAction: Story = {
     title: '网络错误',
     description: '连接服务器失败，请检查网络连接',
     type: 'error',
-    action: <Button size="sm" variant="outline">重试</Button>,
+    action: (
+      <Button size="sm" variant="outline">
+        重试
+      </Button>
+    ),
     open: true,
     duration: 0,
   },
@@ -189,47 +200,37 @@ export const NotClosable: Story = {
 
 // useToast Hook示例
 const ToastDemo = () => {
-  const {
-    toasts,
-    success,
-    error,
-    warning,
-    info,
-    remove,
-    clear,
-    toast,
-  } = useToast({
-    defaultPosition: 'top-right',
-    maxToasts: 5,
-  })
+  const { toasts, success, error, warning, info, remove, clear, toast } =
+    useToast({
+      defaultPosition: 'top-right',
+      maxToasts: 5,
+    })
 
   return (
     <div className="p-8 space-y-4">
       <div className="space-x-4">
-        <Button onClick={() => success('操作成功完成!')}>
-          成功
-        </Button>
-        <Button onClick={() => error('操作失败，请重试')}>
-          错误
-        </Button>
-        <Button onClick={() => warning('请注意输入格式')}>
-          警告
-        </Button>
-        <Button onClick={() => info('这是一条信息提示')}>
-          信息
-        </Button>
+        <Button onClick={() => success('操作成功完成!')}>成功</Button>
+        <Button onClick={() => error('操作失败，请重试')}>错误</Button>
+        <Button onClick={() => warning('请注意输入格式')}>警告</Button>
+        <Button onClick={() => info('这是一条信息提示')}>信息</Button>
       </div>
-      
+
       <div className="space-x-4">
-        <Button 
+        <Button
           variant="outline"
-          onClick={() => toast({
-            title: '自定义Toast',
-            description: '这是一个自定义的Toast消息',
-            type: 'info',
-            duration: 8000,
-            action: <Button size="sm" variant="outline">操作</Button>,
-          })}
+          onClick={() =>
+            toast({
+              title: '自定义Toast',
+              description: '这是一个自定义的Toast消息',
+              type: 'info',
+              duration: 8000,
+              action: (
+                <Button size="sm" variant="outline">
+                  操作
+                </Button>
+              ),
+            })
+          }
         >
           自定义Toast
         </Button>
@@ -238,11 +239,7 @@ const ToastDemo = () => {
         </Button>
       </div>
 
-      <ToastContainer 
-        toasts={toasts}
-        onRemove={remove}
-        position="top-right"
-      />
+      <ToastContainer toasts={toasts} onRemove={remove} position="top-right" />
     </div>
   )
 }
@@ -252,7 +249,8 @@ export const UseToastHook: Story = {
   parameters: {
     docs: {
       description: {
-        story: '使用 useToast Hook 来管理Toast消息的完整示例，展示了正确的堆叠效果。',
+        story:
+          '使用 useToast Hook 来管理Toast消息的完整示例，展示了正确的堆叠效果。',
       },
     },
   },
@@ -261,10 +259,30 @@ export const UseToastHook: Story = {
 // 堆叠效果演示
 const StackingDemo = () => {
   const [toasts, setToasts] = useState([
-    { id: '1', type: 'success' as const, title: '成功', description: '第一条成功消息' },
-    { id: '2', type: 'warning' as const, title: '警告', description: '第二条警告消息' },
-    { id: '3', type: 'error' as const, title: '错误', description: '第三条错误消息' },
-    { id: '4', type: 'info' as const, title: '信息', description: '第四条信息消息' },
+    {
+      id: '1',
+      type: 'success' as const,
+      title: '成功',
+      description: '第一条成功消息',
+    },
+    {
+      id: '2',
+      type: 'warning' as const,
+      title: '警告',
+      description: '第二条警告消息',
+    },
+    {
+      id: '3',
+      type: 'error' as const,
+      title: '错误',
+      description: '第三条错误消息',
+    },
+    {
+      id: '4',
+      type: 'info' as const,
+      title: '信息',
+      description: '第四条信息消息',
+    },
   ])
 
   const removeToast = (id: string) => {
@@ -274,7 +292,9 @@ const StackingDemo = () => {
   const addToast = () => {
     const newToast = {
       id: Date.now().toString(),
-      type: ['success', 'warning', 'error', 'info'][Math.floor(Math.random() * 4)] as any,
+      type: ['success', 'warning', 'error', 'info'][
+        Math.floor(Math.random() * 4)
+      ] as any,
       title: '新消息',
       description: `这是第 ${toasts.length + 1} 条消息`,
     }
@@ -285,14 +305,16 @@ const StackingDemo = () => {
     <div className="p-8 space-y-4">
       <div className="space-x-4">
         <Button onClick={addToast}>添加Toast</Button>
-        <Button variant="outline" onClick={() => setToasts([])}>清空所有</Button>
+        <Button variant="outline" onClick={() => setToasts([])}>
+          清空所有
+        </Button>
       </div>
-      
+
       <p className="text-sm text-gray-600">
         当前有 {toasts.length} 条Toast消息。注意它们不会重叠，而是正确堆叠显示。
       </p>
 
-      <ToastContainer 
+      <ToastContainer
         toasts={toasts}
         onRemove={removeToast}
         position="top-right"
@@ -307,7 +329,8 @@ export const StackingEffect: Story = {
   parameters: {
     docs: {
       description: {
-        story: '演示Toast组件的正确堆叠效果。多个Toast不会重叠，而是按顺序堆叠显示。',
+        story:
+          '演示Toast组件的正确堆叠效果。多个Toast不会重叠，而是按顺序堆叠显示。',
       },
     },
   },
@@ -325,10 +348,8 @@ const AutoCloseDemo = () => {
 
   return (
     <div className="p-8">
-      <Button onClick={showToast}>
-        显示自动关闭Toast (3秒)
-      </Button>
-      
+      <Button onClick={showToast}>显示自动关闭Toast (3秒)</Button>
+
       <Toast
         title="自动关闭"
         description="这条消息将在3秒后自动关闭"
@@ -350,4 +371,4 @@ export const AutoClose: Story = {
       },
     },
   },
-} 
+}

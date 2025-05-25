@@ -1,6 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { Input } from '../src/components/Input'
-import { UserIcon, MagnifyingGlassIcon, EyeIcon } from '@heroicons/react/24/outline'
+import {
+  UserIcon,
+  MagnifyingGlassIcon,
+  EyeIcon,
+} from '@heroicons/react/24/outline'
 
 const meta: Meta<typeof Input> = {
   title: 'Components/Input',
@@ -100,12 +104,12 @@ export const States: Story = {
     <div className="space-y-4 w-80">
       <Input label="正常状态" placeholder="正常输入框" />
       <Input label="禁用状态" placeholder="禁用输入框" disabled />
-      <Input 
-        label="错误状态" 
-        placeholder="错误输入框" 
+      <Input
+        label="错误状态"
+        placeholder="错误输入框"
         error="这是一个错误信息"
         value="错误的值"
       />
     </div>
   ),
-} 
+}

@@ -40,9 +40,11 @@ import '@dootask/ui/dist/styles.css'
 ### 使用组件
 
 ```tsx
-import { Button, Input, Card } from '@dootask/ui'
+import { Button, Input, Card, Modal, Toast, ToastContainer, useToast } from '@dootask/ui'
 
 function App() {
+  const { toasts, success, error, remove } = useToast()
+  
   return (
     <div className="p-4 space-y-4">
       <Card padding="lg">
@@ -54,10 +56,25 @@ function App() {
           className="mb-4"
         />
         
-        <Button color="primary" size="lg">
-          登录
-        </Button>
+        <div className="space-x-2">
+          <Button color="primary" size="lg">
+            登录
+          </Button>
+          <Button 
+            variant="outline" 
+            onClick={() => success('登录成功！')}
+          >
+            显示提示
+          </Button>
+        </div>
       </Card>
+
+      {/* Toast 容器 */}
+      <ToastContainer 
+        toasts={toasts}
+        onRemove={remove}
+        position="top-right"
+      />
     </div>
   )
 }
@@ -99,16 +116,45 @@ DooTask UI 使用 Mantis 绿色作为默认主题色：
 
 ## 📦 组件列表
 
-- [x] **Button** - 按钮组件
-- [x] **Input** - 输入框组件  
-- [x] **Card** - 卡片组件
-- [ ] **Modal** - 模态框组件
-- [ ] **Toast** - 提示组件
+### 基础组件
+- [x] **Button** - 按钮组件，支持多种样式、尺寸和状态
+- [x] **Input** - 输入框组件，支持标签、图标、错误状态
+- [x] **Card** - 卡片组件，支持多种内边距、阴影和悬停效果
+
+### 反馈组件
+- [x] **Modal** - 模态框组件，支持多种尺寸、ESC关闭、点击遮罩关闭
+- [x] **Toast** - 消息提示组件，支持4种类型、6个位置、自动关闭
+- [x] **Portal** - Portal组件，用于渲染到指定DOM节点
+
+### Toast 组件特色
+```tsx
+// 使用 useToast Hook，支持完美堆叠
+const { success, error, warning, info, toasts, remove } = useToast()
+
+success('操作成功！')  // 成功提示
+error('操作失败')      // 错误提示  
+warning('请注意')      // 警告提示
+info('消息提示')       // 信息提示
+
+// 自定义 Toast
+toast({
+  title: '自定义标题',
+  description: '自定义内容',
+  type: 'info',
+  duration: 5000,
+  action: <Button size="sm">重试</Button>
+})
+```
+
+### 待开发组件
 - [ ] **Loading** - 加载组件
 - [ ] **Avatar** - 头像组件
 - [ ] **Badge** - 徽章组件
 - [ ] **Tabs** - 标签页组件
 - [ ] **Tooltip** - 工具提示组件
+- [ ] **Select** - 选择器组件
+- [ ] **Checkbox** - 复选框组件
+- [ ] **Radio** - 单选框组件
 
 ## 🛠 开发
 
@@ -149,14 +195,22 @@ npm run lint
 ```
 src/
 ├── components/          # 组件源码
-│   ├── Button/
-│   ├── Input/
-│   └── Card/
+│   ├── Button/         # 按钮组件
+│   ├── Input/          # 输入框组件
+│   ├── Card/           # 卡片组件
+│   ├── Modal/          # 模态框组件
+│   ├── Toast/          # Toast消息组件
+│   │   ├── Toast.tsx
+│   │   ├── ToastContainer.tsx
+│   │   ├── useToast.ts
+│   │   └── index.ts
+│   └── Portal/         # Portal组件
 ├── hooks/              # 自定义 Hooks
 ├── utils/              # 工具函数
+│   └── cn.ts          # 样式合并工具
 ├── types/              # TypeScript 类型定义
-├── styles.css          # 样式文件
-└── index.ts            # 导出文件
+├── styles.css          # 全局样式文件 (Tailwind CSS v4.1)
+└── index.ts            # 主导出文件
 ```
 
 ## 🤝 贡献
@@ -177,6 +231,8 @@ src/
 
 - [GitHub 仓库](https://github.com/dootask/ui)
 - [问题反馈](https://github.com/dootask/ui/issues)
+- [NPM 包](https://www.npmjs.com/package/@dootask/ui)
+- [Storybook 文档](http://localhost:6006) (开发环境)
 - [更新日志](CHANGELOG.md)
 - [文档站点](https://ui.dootask.com) (即将推出)
 
