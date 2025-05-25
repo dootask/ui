@@ -1,0 +1,209 @@
+@import "tailwindcss";
+
+@theme {
+  /* Custom colors - Mantis theme */
+  --color-mantis-50: #f5fbf2;
+  --color-mantis-100: #e8f6e2;
+  --color-mantis-200: #d2ecc6;
+  --color-mantis-300: #addc99;
+  --color-mantis-400: #84c56a;
+  --color-mantis-500: #5da740;
+  --color-mantis-600: #498930;
+  --color-mantis-700: #3b6d28;
+  --color-mantis-800: #325724;
+  --color-mantis-900: #2a481f;
+  --color-mantis-950: #13270c;
+
+  /* Set primary colors to use mantis theme */
+  --color-primary-50: var(--color-mantis-50);
+  --color-primary-100: var(--color-mantis-100);
+  --color-primary-200: var(--color-mantis-200);
+  --color-primary-300: var(--color-mantis-300);
+  --color-primary-400: var(--color-mantis-400);
+  --color-primary-500: var(--color-mantis-500);
+  --color-primary-600: var(--color-mantis-600);
+  --color-primary-700: var(--color-mantis-700);
+  --color-primary-800: var(--color-mantis-800);
+  --color-primary-900: var(--color-mantis-900);
+  --color-primary-950: var(--color-mantis-950);
+
+  /* Custom font families */
+  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+  /* Custom breakpoints */
+  --breakpoint-xs: 475px;
+  --breakpoint-3xl: 1792px;
+
+  /* Radius scale */
+  --radius-xs: 0.125rem;
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1rem;
+  --radius-3xl: 1.5rem;
+
+  /* Component-specific variables */
+  --default-border-radius: var(--radius-md);
+  --default-transition-duration: 200ms;
+  --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Base styles for component library */
+@layer base {
+  /* Focus styles for accessibility */
+  *:focus-visible {
+    outline: 2px solid var(--color-primary-500);
+    outline-offset: 2px;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgb(203 213 225 / 0.5);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(148 163 184 / 0.7);
+  }
+
+  /* Dark mode scrollbar */
+  @media (prefers-color-scheme: dark) {
+    ::-webkit-scrollbar-thumb {
+      background: rgb(71 85 105 / 0.5);
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgb(100 116 139 / 0.7);
+    }
+  }
+}
+
+/* Component utilities */
+@layer utilities {
+  .animate-in {
+    animation-duration: var(--default-transition-duration);
+    animation-timing-function: var(--default-transition-timing-function);
+    animation-fill-mode: both;
+  }
+
+  .animate-out {
+    animation-duration: var(--default-transition-duration);
+    animation-timing-function: var(--default-transition-timing-function);
+    animation-fill-mode: both;
+  }
+
+  .fade-in {
+    animation-name: fadeIn;
+  }
+
+  .fade-out {
+    animation-name: fadeOut;
+  }
+
+  .slide-in-from-top {
+    animation-name: slideInFromTop;
+  }
+
+  .slide-in-from-bottom {
+    animation-name: slideInFromBottom;
+  }
+
+  .slide-in-from-left {
+    animation-name: slideInFromLeft;
+  }
+
+  .slide-in-from-right {
+    animation-name: slideInFromRight;
+  }
+
+  .scale-in {
+    animation-name: scaleIn;
+  }
+
+  .scale-out {
+    animation-name: scaleOut;
+  }
+}
+
+/* Keyframes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes slideInFromTop {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFromBottom {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes scaleOut {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(0);
+  }
+} 

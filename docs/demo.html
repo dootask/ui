@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DooTask UI - 演示页面</title>
+    
+    <!-- Tailwind CSS CDN (仅供演示) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- 自定义主题配置 -->
+    <style>
+        :root {
+            /* Mantis 主题色 */
+            --color-primary-50: #f5fbf2;
+            --color-primary-100: #e8f6e2;
+            --color-primary-200: #d2ecc6;
+            --color-primary-300: #addc99;
+            --color-primary-400: #84c56a;
+            --color-primary-500: #5da740;
+            --color-primary-600: #498930;
+            --color-primary-700: #3b6d28;
+            --color-primary-800: #325724;
+            --color-primary-900: #2a481f;
+            --color-primary-950: #13270c;
+        }
+        
+        .btn-primary {
+            background-color: var(--color-primary-600);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            border: none;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--color-primary-700);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: var(--color-primary-600);
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            border: 2px solid var(--color-primary-600);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--color-primary-50);
+        }
+        
+        .input-field {
+            width: 100%;
+            padding: 0.5rem 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            transition: border-color 0.2s;
+        }
+        
+        .input-field:focus {
+            outline: none;
+            border-color: var(--color-primary-500);
+            box-shadow: 0 0 0 3px rgb(93 167 64 / 0.1);
+        }
+        
+        .card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+        }
+        
+        .card:hover {
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            transition: box-shadow 0.2s;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-gray-900 mb-4">
+                DooTask UI 演示
+            </h1>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                这是一个展示 DooTask UI 组件库样式的演示页面。
+                实际使用时，请通过 npm 安装组件库。
+            </p>
+        </div>
+
+        <!-- 安装指南 -->
+        <div class="card mb-8">
+            <h2 class="text-2xl font-semibold mb-4">快速安装</h2>
+            <div class="bg-gray-100 p-4 rounded-lg mb-4">
+                <code class="text-sm">npm install @dootask/ui</code>
+            </div>
+            <p class="text-gray-600">
+                然后在你的 React 应用中导入组件和样式文件即可使用。
+            </p>
+        </div>
+
+        <!-- 按钮示例 -->
+        <div class="card mb-8">
+            <h2 class="text-2xl font-semibold mb-4">按钮组件</h2>
+            <div class="space-y-4">
+                <div class="flex gap-4 flex-wrap">
+                    <button class="btn-primary">主要按钮</button>
+                    <button class="btn-outline">边框按钮</button>
+                    <button class="btn-primary" disabled style="opacity: 0.5; cursor: not-allowed;">
+                        禁用按钮
+                    </button>
+                </div>
+                
+                <div class="flex gap-4 flex-wrap">
+                    <button class="btn-primary text-xs px-2 py-1">超小</button>
+                    <button class="btn-primary text-sm px-3 py-1.5">小</button>
+                    <button class="btn-primary">中等</button>
+                    <button class="btn-primary text-lg px-6 py-3">大</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 表单示例 -->
+        <div class="card mb-8">
+            <h2 class="text-2xl font-semibold mb-4">表单组件</h2>
+            <form class="space-y-4" onsubmit="return false;">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">
+                        用户名
+                    </label>
+                    <input type="text" class="input-field" placeholder="请输入用户名">
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">
+                        邮箱地址
+                    </label>
+                    <input type="email" class="input-field" placeholder="请输入邮箱">
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">
+                        密码
+                    </label>
+                    <input type="password" class="input-field" placeholder="请输入密码">
+                </div>
+                
+                <button type="submit" class="btn-primary w-full">
+                    提交表单
+                </button>
+            </form>
+        </div>
+
+        <!-- 卡片网格 -->
+        <div class="mb-8">
+            <h2 class="text-2xl font-semibold mb-4">卡片组件</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="card">
+                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">快速开发</h3>
+                    <p class="text-gray-600 text-sm">
+                        开箱即用的组件，让你专注于业务逻辑开发。
+                    </p>
+                </div>
+                
+                <div class="card">
+                    <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">类型安全</h3>
+                    <p class="text-gray-600 text-sm">
+                        完整的 TypeScript 支持，提供优秀的开发体验。
+                    </p>
+                </div>
+                
+                <div class="card">
+                    <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+                        <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17v4a2 2 0 002 2h4M13 13h4a2 2 0 012 2v4a2 2 0 01-2 2h-4"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">主题定制</h3>
+                    <p class="text-gray-600 text-sm">
+                        基于 Tailwind CSS，支持深度主题定制。
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 链接区域 -->
+        <div class="card text-center">
+            <h2 class="text-2xl font-semibold mb-4">了解更多</h2>
+            <div class="flex justify-center gap-4 flex-wrap">
+                <a href="https://github.com/dootask/ui" target="_blank" class="btn-outline">
+                    GitHub 仓库
+                </a>
+                <a href="http://localhost:6006" target="_blank" class="btn-primary">
+                    查看 Storybook
+                </a>
+                <a href="https://www.npmjs.com/package/@dootask/ui" target="_blank" class="btn-outline">
+                    npm 包
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 简单的交互效果
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('click', function() {
+                if (!this.disabled) {
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 100);
+                }
+            });
+        });
+        
+        // 表单提交提示
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('这只是一个演示页面，实际请使用 @dootask/ui React 组件！');
+        });
+    </script>
+</body>
+</html> 
