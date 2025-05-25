@@ -4,11 +4,25 @@ import { Button } from './components/Button'
 import { Input } from './components/Input'
 import { Card } from './components/Card'
 import { Modal } from './components/Modal'
+import { ToastContainer, useToast } from './components/Toast'
 import { UserIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 import './styles.css'
 
 export function DevApp() {
   const [modalOpen, setModalOpen] = useState(false)
+  const {
+    toasts,
+    success,
+    error,
+    warning,
+    info,
+    remove,
+    clear,
+    toast,
+  } = useToast({
+    defaultPosition: 'top-right',
+    maxToasts: 5,
+  })
   
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 p-8">
@@ -153,6 +167,49 @@ export function DevApp() {
           </div>
         </Card>
 
+        {/* Toast 组件展示 */}
+        <Card padding="lg">
+          <h2 className="text-2xl font-semibold mb-4 text-gray-900 dark:text-white">
+            Toast 消息提示组件
+          </h2>
+          <div className="space-y-4">
+            <p className="text-gray-600 dark:text-gray-300">
+              Toast组件支持多种类型、位置和自动关闭功能。Portal渲染到body，支持堆叠显示。
+            </p>
+            <div className="flex gap-4 flex-wrap">
+              <Button onClick={() => success('操作成功完成!')} color="success">
+                成功提示
+              </Button>
+              <Button onClick={() => error('操作失败，请重试')} color="error">
+                错误提示
+              </Button>
+              <Button onClick={() => warning('请注意输入格式')} color="warning">
+                警告提示
+              </Button>
+              <Button onClick={() => info('这是一条信息提示')} color="info">
+                信息提示
+              </Button>
+            </div>
+            <div className="flex gap-4 flex-wrap">
+              <Button 
+                variant="outline"
+                onClick={() => toast({
+                  title: '自定义Toast',
+                  description: '这是一个自定义的Toast消息',
+                  type: 'info',
+                  duration: 8000,
+                  action: <Button size="sm" variant="outline">重试</Button>,
+                })}
+              >
+                自定义Toast
+              </Button>
+              <Button variant="outline" onClick={clear}>
+                清空所有
+              </Button>
+            </div>
+          </div>
+        </Card>
+
         {/* Modal 实例 */}
         <Modal
           open={modalOpen}
@@ -179,6 +236,13 @@ export function DevApp() {
             </div>
           </div>
         </Modal>
+
+        {/* Toast 容器 */}
+        <ToastContainer 
+          toasts={toasts}
+          onRemove={remove}
+          position="top-right"
+        />
       </div>
     </div>
   )
