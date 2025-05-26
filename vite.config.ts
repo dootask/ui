@@ -15,6 +15,9 @@ export default defineConfig({
       '@': resolve(__dirname, 'src'),
     },
   },
+  server: {
+    host: true,
+  },
   build: {
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
